@@ -527,6 +527,24 @@ footer{ background: var(--ink); border-top: 1px solid var(--ink-3); padding: 3.6
 .footer-row p{ margin:0; font-size:.8rem; color: var(--text-on-ink-mute); }
 .footer-row .mono{ font-size:.75rem; color: var(--text-on-ink-mute); }
 
+/* ============ partenaires ============ */
+.partner-grid{
+  display:grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1px;
+  background: var(--line); border: 1px solid var(--line);
+}
+.partner{
+  background: var(--paper); padding: 1.5rem 1.4rem;
+  display:flex; flex-direction:column; gap:.45rem;
+  color: var(--text-dark); text-decoration:none;
+  transition: background .25s ease, box-shadow .25s ease;
+}
+.partner:hover{ background: var(--foam); box-shadow: inset 0 3px 0 var(--reed); }
+.partner b{ font-family: var(--f-display); font-size: 1.02rem; font-weight:600; line-height:1.25; }
+.partner span{ font-family: var(--f-mono); font-size:.7rem; letter-spacing:.04em; color: var(--reed); text-transform:uppercase; }
+.partner--nolink{ cursor: default; }
+.partner--nolink:hover{ box-shadow:none; }
+.partner--nolink span{ color: var(--text-mute); }
+
 /* ============ reveal on scroll ============ */
 .reveal{ opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.is-visible{ opacity:1; transform:none; }
