@@ -85,6 +85,7 @@ p{ margin: 0 0 1em; }
 
 .section-head{ max-width: 720px; margin-bottom: 3rem; }
 .section-head h2{ font-size: clamp(1.8rem, 3.4vw, 2.6rem); line-height: 1.15; letter-spacing: -0.01em; }
+.section-head h2.eyebrow{ font-size: 1rem; margin-bottom: 0; }
 .section-head p{ color: var(--text-mute); font-size: 1.05rem; max-width: 60ch; margin-top: .9rem; }
 .section--ink .section-head p{ color: var(--text-on-ink-mute); }
 
