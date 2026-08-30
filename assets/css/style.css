@@ -529,18 +529,18 @@ footer{ background: var(--ink); border-top: 1px solid var(--ink-3); padding: 3.6
 
 /* ============ partenaires (mur de logos) ============ */
 .partner-wall{
-  display:grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1.2rem;
+  display:grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.6rem;
 }
 .p-logo{
   display:flex; align-items:center; justify-content:center;
   background: none; border: 0; border-radius: 0;
-  padding: .6rem; min-height: 96px;
+  padding: 0;
   text-decoration:none; text-align:center;
   transition: transform .25s ease;
 }
 .p-logo:hover{ transform: translateY(-3px); }
 .p-logo img{
-  max-height: 76px; max-width: 150px; width:auto; height:auto;
+  max-height: 120px; max-width: 220px; width:auto; height:auto;
   object-fit: contain;
 }
 .p-logo--text{
