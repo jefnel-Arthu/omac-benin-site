@@ -542,6 +542,7 @@ footer{ background: var(--ink); border-top: 1px solid var(--ink-3); padding: 3.6
 .p-logo img{
   max-height: 120px; max-width: 220px; width:auto; height:auto;
   object-fit: contain;
+  mix-blend-mode: multiply;
 }
 .p-logo--text{
   font-family: var(--f-display); font-style: italic; font-size: 1.02rem; line-height:1.25;
