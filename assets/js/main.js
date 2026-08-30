@@ -115,6 +115,38 @@
     }
   }
 
+  // ---- carousel (vues aériennes) ----
+  document.querySelectorAll('[data-carousel]').forEach(function(car){
+    var track = car.querySelector('[data-carousel-track]');
+    var slides = track.children;
+    var dotsBox = car.querySelector('[data-carousel-dots]');
+    var prevBtn = car.querySelector('[data-carousel-prev]');
+    var nextBtn = car.querySelector('[data-carousel-next]');
+    var idx = 0, n = slides.length;
+    if (n < 2) return;
+    Array.prototype.forEach.call(slides, function(_, k){
+      var d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'carou__dot';
+      d.setAttribute('aria-label', 'Photo ' + (k + 1));
+      d.addEventListener('click', function(){ go(k); });
+      dotsBox.appendChild(d);
+    });
+    var dots = dotsBox.children;
+    function go(k){
+      idx = (k + n) % n;
+      track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+      Array.prototype.forEach.call(dots, function(d, j){ d.classList.toggle('is-active', j === idx); });
+    }
+    prevBtn.addEventListener('click', function(){ go(idx - 1); });
+    nextBtn.addEventListener('click', function(){ go(idx + 1); });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowLeft') go(idx - 1);
+      else if (e.key === 'ArrowRight') go(idx + 1);
+    });
+    go(0);
+  });
+
   // ---- current year ----
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();

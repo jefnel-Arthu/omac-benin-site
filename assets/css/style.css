@@ -351,6 +351,31 @@ p{ margin: 0 0 1em; }
   margin-top:.7rem; letter-spacing:.02em;
 }
 
+.carou{ position:relative; border-radius: var(--radius); background: var(--paper); overflow:hidden; }
+.carou__track{ display:flex; transition: transform .45s ease; }
+.carou__slide{ flex:0 0 100%; margin:0; aspect-ratio: 4/3; background: var(--paper); }
+.carou__slide img{ width:100%; height:100%; object-fit:contain; display:block; }
+.carou__btn{
+  position:absolute; top:50%; transform: translateY(-50%);
+  width:38px; height:38px; border-radius:50%; border:0; cursor:pointer; z-index:3;
+  background: rgba(255,255,255,.9); color: var(--ink);
+  font-size:1.3rem; line-height:1; display:flex; align-items:center; justify-content:center; padding:0 0 3px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  transition: background .2s ease;
+}
+.carou__btn:hover{ background:#fff; }
+.carou__btn--prev{ left:.8rem; }
+.carou__btn--next{ right:.8rem; }
+.carou__dots{
+  position:absolute; bottom:.7rem; left:0; right:0; display:flex; justify-content:center; gap:.5rem; z-index:3;
+}
+.carou__dot{
+  width:9px; height:9px; border-radius:50%; border:0; padding:0; cursor:pointer;
+  background: rgba(255,255,255,.55); box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  transition: background .2s ease;
+}
+.carou__dot.is-active{ background:#fff; }
+
 .chip-row{ display:flex; flex-wrap:wrap; gap:.6rem; margin: 1.6rem 0 0; }
 .chip{
   font-family: var(--f-mono); font-size:.76rem;
