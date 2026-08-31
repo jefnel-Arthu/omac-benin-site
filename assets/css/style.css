@@ -355,7 +355,7 @@ p{ margin: 0 0 1em; }
 .carou__track{ display:flex; transition: transform .45s ease; }
 .carou__slide{ display:flex; flex-direction:column; flex:0 0 100%; margin:0; }
 .carou__image-box{ aspect-ratio: 4/3; background: var(--paper); position:relative; }
-.carou__image-box img{ width:100%; height:100%; object-fit:contain; display:block; }
+.carou__image-box img{ width:70%; height:70%; object-fit:contain; display:block; }
 .carou__cap{
   margin:0; padding:.5rem .7rem .6rem;
   font-family: var(--f-mono); font-size:.7rem; color: var(--text-mute);
