@@ -44,18 +44,15 @@
     revealEls.forEach(function(el){ el.classList.add('is-visible'); });
   }
 
-  // ---- contact form (demo — no backend wired) ----
+  // ---- contact form ----
   var form = document.getElementById('contact-form');
   if (form) {
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
+    form.addEventListener('submit', function(){
       var status = document.getElementById('form-status');
-      var name = form.querySelector('[name="name"]').value.trim();
-      status.textContent = name
-        ? 'Merci ' + name + ' — votre message est prêt à être envoyé dès que ce formulaire sera relié à une adresse de réception (voir README).'
-        : 'Merci — votre message est prêt à être envoyé dès que ce formulaire sera relié à une adresse de réception (voir README).';
-      status.classList.add('is-visible');
-      form.reset();
+      if (status) {
+        status.textContent = 'Envoi du message…';
+        status.classList.add('is-visible');
+      }
     });
   }
 
@@ -123,7 +120,10 @@
     var prevBtn = car.querySelector('[data-carousel-prev]');
     var nextBtn = car.querySelector('[data-carousel-next]');
     var idx = 0, n = slides.length;
+    var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var autoTimer = null;
     if (n < 2) return;
+
     Array.prototype.forEach.call(slides, function(_, k){
       var d = document.createElement('button');
       d.type = 'button';
@@ -132,19 +132,37 @@
       d.addEventListener('click', function(){ go(k); });
       dotsBox.appendChild(d);
     });
+
     var dots = dotsBox.children;
+
     function go(k){
       idx = (k + n) % n;
       track.style.transform = 'translateX(-' + (idx * 100) + '%)';
       Array.prototype.forEach.call(dots, function(d, j){ d.classList.toggle('is-active', j === idx); });
     }
-    prevBtn.addEventListener('click', function(){ go(idx - 1); });
-    nextBtn.addEventListener('click', function(){ go(idx + 1); });
+
+    function startAutoPlay(){
+      if (reducedMotion) return;
+      clearInterval(autoTimer);
+      autoTimer = setInterval(function(){ go(idx + 1); }, 3800);
+    }
+
+    function stopAutoPlay(){
+      clearInterval(autoTimer);
+    }
+
+    prevBtn.addEventListener('click', function(){ go(idx - 1); startAutoPlay(); });
+    nextBtn.addEventListener('click', function(){ go(idx + 1); startAutoPlay(); });
+    car.addEventListener('mouseenter', stopAutoPlay);
+    car.addEventListener('mouseleave', startAutoPlay);
+    car.addEventListener('focusin', stopAutoPlay);
+    car.addEventListener('focusout', startAutoPlay);
     document.addEventListener('keydown', function(e){
-      if (e.key === 'ArrowLeft') go(idx - 1);
-      else if (e.key === 'ArrowRight') go(idx + 1);
+      if (e.key === 'ArrowLeft') { go(idx - 1); startAutoPlay(); }
+      else if (e.key === 'ArrowRight') { go(idx + 1); startAutoPlay(); }
     });
     go(0);
+    startAutoPlay();
   });
 
   // ---- current year ----
